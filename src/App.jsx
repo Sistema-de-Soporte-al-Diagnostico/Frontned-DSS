@@ -1,55 +1,48 @@
-import React from 'react';
-import DiagnosticoForm from './components/DiagnosticoForm';
+import { Navigate, Route, Routes } from 'react-router-dom';
+import AdminRoute from './components/auth/AdminRoute';
+import ProtectedRoute from './components/auth/ProtectedRoute';
+import Layout from './components/layout/Layout';
+import AdminPage from './pages/AdminPage';
+import DashboardPage from './pages/DashboardPage';
+import LoginPage from './pages/LoginPage';
+import PatientDetailPage from './pages/PatientDetailPage';
+import PatientRegistrationPage from './pages/PatientRegistrationPage';
+import PatientsHistoryPage from './pages/PatientsHistoryPage';
+import PredictionResultPage from './pages/PredictionResultPage';
+import SymptomsEntryPage from './pages/SymptomsEntryPage';
 
 function App() {
-  const styles = {
-    appContainer: {
-      minHeight: '100vh',
-      backgroundColor: '#f0f4f8',
-      display: 'flex',
-      flexDirection: 'column',
-      alignItems: 'center',
-      padding: '40px 20px',
-      fontFamily: '"Segoe UI", Roboto, Helvetica, Arial, sans-serif',
-      boxSizing: 'border-box'
-    },
-    header: {
-      textAlign: 'center',
-      marginBottom: '40px',
-    },
-    title: {
-      color: '#1a365d',
-      fontSize: '2.5rem',
-      margin: '0 0 10px 0',
-      fontWeight: 'bold'
-    },
-    subtitle: {
-      color: '#4a5568',
-      fontSize: '1.2rem',
-      margin: 0
-    },
-    card: {
-      backgroundColor: 'white',
-      borderRadius: '12px',
-      boxShadow: '0 10px 25px rgba(0, 0, 0, 0.05)',
-      width: '100%',
-      maxWidth: '600px',
-      padding: '30px',
-      boxSizing: 'border-box'
-    }
-  };
-
   return (
-    <div style={styles.appContainer}>
-      <header style={styles.header}>
-        <h1 style={styles.title}>Charming Vet</h1>
-        <p style={styles.subtitle}>Sistema de Diagnóstico con Inteligencia Artificial</p>
-      </header>
+    <Routes>
+      <Route path="/login" element={<LoginPage />} />
 
-      <main style={styles.card}>
-        <DiagnosticoForm />
-      </main>
-    </div>
+      <Route
+        path="/"
+        element={
+          <ProtectedRoute>
+            <Layout />
+          </ProtectedRoute>
+        }
+      >
+        <Route index element={<Navigate to="/dashboard" replace />} />
+        <Route path="dashboard" element={<DashboardPage />} />
+        <Route path="patients/new" element={<PatientRegistrationPage />} />
+        <Route path="symptoms" element={<SymptomsEntryPage />} />
+        <Route path="predictions/result" element={<PredictionResultPage />} />
+        <Route path="history" element={<PatientsHistoryPage />} />
+        <Route path="patients/:patientId" element={<PatientDetailPage />} />
+        <Route
+          path="admin"
+          element={
+            <AdminRoute>
+              <AdminPage />
+            </AdminRoute>
+          }
+        />
+      </Route>
+
+      <Route path="*" element={<Navigate to="/dashboard" replace />} />
+    </Routes>
   );
 }
 
