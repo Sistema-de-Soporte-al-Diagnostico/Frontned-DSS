@@ -142,13 +142,13 @@ export default function SymptomsEntryPage() {
         speciesLabel: speciesLabel(clinicalValues.especie),
       };
 
-      await submitPrediction({
+      const { historyItem } = await submitPrediction({
         patient,
         variablesClinicas: clinicalValues,
       });
 
       clearDraftPatient();
-      navigate('/predictions/result');
+      navigate(`/patients/${historyItem.id}`);
     } catch (err) {
       setError(err.message || 'No se pudo completar el análisis de síntomas.');
     }

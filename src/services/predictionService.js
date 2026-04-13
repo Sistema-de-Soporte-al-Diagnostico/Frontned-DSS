@@ -18,3 +18,9 @@ export async function createPrediction(payload) {
     raw: data,
   };
 }
+
+/** Detalle compat GET /predictions/{id} (validación en servidor). */
+export async function fetchCompatPredictionDetail(predictionId) {
+  const response = await httpClient.get(`/predictions/${predictionId}`);
+  return response.data;
+}

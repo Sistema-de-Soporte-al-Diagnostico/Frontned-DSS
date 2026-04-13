@@ -2,11 +2,10 @@ import { NavLink } from 'react-router-dom';
 import { useAuth } from '../../hooks/useAuth';
 
 const menu = [
-  { to: '/login', label: 'Login / Autenticación' },
+  //{ to: '/login', label: 'Login / Autenticación' },
   { to: '/dashboard', label: 'Dashboard' },
   { to: '/patients/new', label: 'Registro de Paciente' },
   { to: '/symptoms', label: 'Ingreso de Síntomas' },
-  { to: '/predictions/result', label: 'Resultados de Predicción' },
   { to: '/history', label: 'Historial de Pacientes' },
 ];
 

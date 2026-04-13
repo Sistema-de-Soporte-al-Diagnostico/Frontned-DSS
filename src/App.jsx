@@ -8,7 +8,7 @@ import LoginPage from './pages/LoginPage';
 import PatientDetailPage from './pages/PatientDetailPage';
 import PatientRegistrationPage from './pages/PatientRegistrationPage';
 import PatientsHistoryPage from './pages/PatientsHistoryPage';
-import PredictionResultPage from './pages/PredictionResultPage';
+import PredictionResultRedirect from './pages/PredictionResultRedirect';
 import SymptomsEntryPage from './pages/SymptomsEntryPage';
 
 function App() {
@@ -28,7 +28,7 @@ function App() {
         <Route path="dashboard" element={<DashboardPage />} />
         <Route path="patients/new" element={<PatientRegistrationPage />} />
         <Route path="symptoms" element={<SymptomsEntryPage />} />
-        <Route path="predictions/result" element={<PredictionResultPage />} />
+        <Route path="predictions/result" element={<PredictionResultRedirect />} />
         <Route path="history" element={<PatientsHistoryPage />} />
         <Route path="patients/:patientId" element={<PatientDetailPage />} />
         <Route
